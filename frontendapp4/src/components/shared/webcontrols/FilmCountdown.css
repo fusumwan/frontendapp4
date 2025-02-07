@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.countdown-container {
+  @apply relative m-0 p-0 bg-gray-400 flex items-center justify-center font-sans overflow-hidden w-full h-full;
+  --circle-size: 60vmin;
+  --text-size: 12vmin;
+}
+
+.countdown-wrapper {
+  @apply relative w-screen h-screen;
+}
+
+.film-circle {
+  @apply absolute top-1/2 left-1/2 rounded-full box-border;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  transform: translate(-50%, -50%);
+  border: calc(var(--circle-size) * 0.02) solid #ffffff;
+}
+
+.film-circle::after {
+  content: '';
+  @apply absolute top-1/2 left-1/2 rounded-full opacity-80;
+  width: calc(var(--circle-size) * 0.83);
+  height: calc(var(--circle-size) * 0.83);
+  transform: translate(-50%, -50%);
+  border: calc(var(--circle-size) * 0.01) solid #ffffff;
+}
+
+.line-horizontal {
+  @apply absolute top-1/2 left-1/2 bg-black opacity-60;
+  width: var(--circle-size);
+  height: calc(var(--circle-size) * 0.005);
+  transform: translate(-50%, -50%);
+}
+
+.line-vertical {
+  @apply absolute top-1/2 left-1/2 bg-black opacity-60;
+  width: calc(var(--circle-size) * 0.005);
+  height: var(--circle-size);
+  transform: translate(-50%, -50%);
+}
+
+.rotating-wedge {
+  @apply absolute top-1/2 left-1/2 rounded-full bg-black bg-opacity-10;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+  clip-path: polygon(50% 50%, 100% 0%, 100% 100%);
+  animation: spin 8s linear infinite;
+}
+
+.countdown-number {
+  @apply absolute top-1/2 left-1/2 font-bold text-black opacity-85;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-size);
+}
