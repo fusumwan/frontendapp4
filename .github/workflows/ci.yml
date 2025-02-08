@@ -22,11 +22,11 @@ jobs:
     - name: Build the Frontend Docker image
       run: docker build -t timothyfudocker/frontendapp4:latest -f ./frontendapp4/Dockerfile .
       
-    - name: Tag the Docker image with v1.00
-      run: docker tag timothyfudocker/frontendapp4:latest timothyfudocker/frontendapp4:v1.00
+    - name: Tag the Docker image with v.1.01
+      run: docker tag timothyfudocker/frontendapp4:latest timothyfudocker/frontendapp4:v.1.01
 
     - name: Push Frontend Docker image to Dockerhub
       run: docker push timothyfudocker/frontendapp4:latest
 
-    - name: Push the Docker image (v1.00 tag)
-      run: docker push timothyfudocker/frontendapp4:v1.00
+    - name: Push the Docker image (v.1.01 tag)
+      run: docker push timothyfudocker/frontendapp4:v.1.01
