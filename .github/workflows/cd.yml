@@ -15,15 +15,24 @@ jobs:
     steps:
     - name: Delete Old Frontend docker container
       run: sudo docker rm -f frontendapp4-container || true
+      
     - name: Delete Frontend Docker image
       run: sudo docker images -q timothyfudocker/frontendapp4 | xargs -r sudo docker rmi -f
+
     - name: Delete Frontend latest Docker image
       run: sudo docker images -q timothyfudocker/frontendapp4:latest | xargs -r sudo docker rmi -f
+
     - name: Delete Frontend Docker image (v1.00 tag)
       run: sudo docker images -q timothyfudocker/frontendapp4:v1.00 | xargs -r sudo docker rmi -f
-    - name: Pull Frontend Docker image
+
+    - name: Pull Frontend Docker image (latest)
       run: sudo docker pull timothyfudocker/frontendapp4:latest
+
+    - name: Tag the latest image as v1.00
+      run: sudo docker tag timothyfudocker/frontendapp4:latest timothyfudocker/frontendapp4:v1.00
+
     - name: Push the Docker image (v1.00 tag)
-      run: docker push timothyfudocker/frontendapp4:v1.00
+      run: sudo docker push timothyfudocker/frontendapp4:v1.00
+
     - name: Run Frontend Docker Container
       run: sudo docker run -d -p 3000:3000 --name frontendapp4-container timothyfudocker/frontendapp4
